@@ -1,0 +1,458 @@
+{
+  "schema_version": 1,
+  "id": "java-methods-arrays",
+  "revision": "v1.0.0",
+  "title": "메서드와 배열",
+  "description": "계산을 나누고 여러 값을 함께 다뤄요.",
+  "sources": [
+    "https://slog.gg/p/14146"
+  ],
+  "sections": [
+    {
+      "id": "reading-1",
+      "title": "개념 · 배열과 인덱스",
+      "body": "배열은 같은 자료형의 값을 묶어서 보관해요.\n`int[] scores = {70, 80, 90};`처럼 만들어요.\n인덱스는 배열 안의 자리 번호예요.\n첫 값은 `scores[0]`이에요.\n길이는 `scores.length`로 확인해요.\n\n길이가 3이면 마지막 인덱스는 2예요.\n`i < scores.length`까지만 접근하세요.\n범위를 벗어나면 실행 오류가 나요.\n\n### 실행 예제\n\n```java\nclass Main {\n    public static void main(String[] args) {\n        // 첫 자리는 0부터 시작해요.\n        int[] scores = {70, 80, 90};\n        System.out.println(scores[0]);\n    }\n}\n```\n\n예상 출력:\n\n```text\n70\n```\n"
+    },
+    {
+      "id": "reading-2",
+      "title": "개념 · 메서드로 계산 나누기",
+      "body": "메서드는 이름을 붙여 묶은 동작이에요.\n입력값을 매개변수로 받아요.\n`return`으로 결과를 돌려주죠.\n\n`static int twice(int value)`를 볼까요?\n정수 하나를 받고 정수 결과를 돌려줘요.\nmain 밖, Main 클래스 안에 정의해요.\nmain에서 바로 부르도록 static을 붙여요.\nvoid 메서드는 결과값을 반환하지 않아요.\n\n### 실행 예제\n\n```java\nclass Main {\n    public static void main(String[] args) {\n        // 먼저 고정된 값으로 메서드를 확인해요.\n        System.out.println(twice(4));\n    }\n    static int twice(int value) {\n        return value * 2;\n    }\n}\n```\n\n예상 출력:\n\n```text\n8\n```\n"
+    },
+    {
+      "id": "reading-3",
+      "title": "개념 · 문자열과 값 비교",
+      "body": "문자열은 글자들의 묶음이에요.\n`length()`로 글자 수를 확인해요.\n`equals()`로 같은 내용인지 비교해요.\n\n문자열에 `==`를 쓰면 참조를 비교해요.\n내용을 비교하려면 equals를 사용하세요.\n`+`로 문자열을 이어 붙일 수도 있어요.\n숫자를 먼저 더하려면 괄호로 묶으세요.\n\n### 실행 예제\n\n```java\nclass Main {\n    public static void main(String[] args) {\n        // equals는 글자 내용이 같은지 비교해요.\n        String word = \"java\";\n        System.out.println(word.equals(\"java\"));\n    }\n}\n```\n\n예상 출력:\n\n```text\ntrue\n```\n"
+    },
+    {
+      "id": "reading-4",
+      "title": "개념 · 도전: 점수 요약하기",
+      "body": "지금까지 배운 입력과 반복을 함께 사용해요.\n필요한 값을 읽고 합과 개수를 구해요.\n조건문으로 합격인지 판단해 볼까요?\n\n예상 출력의 줄 순서도 답의 일부예요.\n값이 맞아도 안내 글을 추가하면 실패해요.\n한 명뿐인 입력과 경계 점수도 확인하세요.\n여러 입력이 모두 통과해야 미션을 클리어해요.\n\n배열에 입력을 담고 메서드로 동작을 나눠요.\nScoreBook 객체가 합과 합격 인원을 보관해요.\n생성자로 인원을 전달해 평균을 구해요.\nstatic 판단 메서드는 객체 없이도 호출해요.\n\n### 실행 예제\n\n```java\nclass Main {\n    public static void main(String[] args) {\n        // 평균을 소수로 계산하려면 실수로 나눠요.\n        int sum = 121;\n        int count = 2;\n        System.out.println((double) sum / count);\n    }\n}\n```\n\n예상 출력:\n\n```text\n60.5\n```\n"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "java25-08-code",
+      "title": "직접 풀기 · 배열과 인덱스",
+      "goal": "### 목표\n\n첫 입력 n은 배열의 길이예요. 1부터 10이에요.\n이어서 n개의 정수를 입력받아요.\n각 값은 -100부터 100까지예요.\n배열에 담은 뒤 전체 합을 출력하세요.\n\n### 힌트\n\nnew int[n]으로 배열을 만든 뒤 입력을 저장하세요.",
+      "language": "java",
+      "entry_file": "Main.java",
+      "starter_code": "class Main {\n    public static void main(String[] args) {\n        // 이곳에 코드를 적으세요.\n    }\n}\n",
+      "solution": "class Main {\n    public static void main(String[] args) {\n        // 길이를 읽고 그만큼의 배열을 만들어요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int n = scanner.nextInt();\n        int[] values = new int[n];\n        // 인덱스는 0부터 n-1까지예요.\n        for (int i = 0; i < values.length; i++) {\n            values[i] = scanner.nextInt();\n        }\n        // 배열에 저장한 값을 하나씩 더해요.\n        int sum = 0;\n        for (int value : values) {\n            sum += value;\n        }\n        System.out.println(sum);\n    }\n}\n",
+      "files": {},
+      "tests": [
+        {
+          "input": "3 70 80 90\n",
+          "expected": "240\n"
+        },
+        {
+          "input": "1 -5\n",
+          "expected": "-5\n"
+        },
+        {
+          "input": "4 -2 0 2 8\n",
+          "expected": "8\n"
+        }
+      ],
+      "web_checks": [],
+      "mutations": [],
+      "required": true,
+      "narration": [
+        {
+          "action": "say",
+          "target": "problem",
+          "text": "첫 입력 n은 배열의 길이예요. 1부터 10이에요.\n이어서 n개의 정수를 입력받아요.\n각 값은 -100부터 100까지예요.\n배열에 담은 뒤 전체 합을 출력하세요."
+        },
+        {
+          "action": "set_code",
+          "code": "class Main {\n    public static void main(String[] args) {\n        // 첫 자리는 0부터 시작해요.\n        int[] scores = {70, 80, 90};\n        System.out.println(scores[0]);\n    }\n}\n",
+          "say": "먼저 작은 예제를 실행해 볼게요."
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "예제 출력은 70예요."
+        },
+        {
+          "action": "say",
+          "target": "editor",
+          "text": "i <= values.length는 범위를 벗어나요. <를 사용하세요."
+        },
+        {
+          "action": "set_code",
+          "code": "class Main {\n    public static void main(String[] args) {\n        // 길이를 읽고 그만큼의 배열을 만들어요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int n = scanner.nextInt();\n        int[] values = new int[n];\n        // 인덱스는 0부터 n-1까지예요.\n        for (int i = 0; i < values.length; i++) {\n            values[i] = scanner.nextInt();\n        }\n        // 배열에 저장한 값을 하나씩 더해요.\n        int sum = 0;\n        for (int value : values) {\n            sum += value;\n        }\n        System.out.println(sum);\n    }\n}\n",
+          "say": "이제 문제의 입력과 출력에 맞춰 확장해요."
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "첫 예제의 결과는 240예요."
+        },
+        {
+          "action": "submit",
+          "say": "다른 입력도 통과하는지 제출해요."
+        }
+      ],
+      "source_hash": "615bc90106fe1e920b7fd3488e4d03e38711b4dfee3e676c5372b75aa2d0c5d5"
+    },
+    {
+      "id": "java25-09-code",
+      "title": "직접 풀기 · 메서드로 계산 나누기",
+      "goal": "### 목표\n\n정수 하나를 입력받아 두 배를 출력하세요.\n입력 범위는 -1000부터 1000까지예요.\n계산은 static int twice(int value)에 적으세요.\nmain에서는 twice를 호출해 결과를 출력하세요.\n\n### 힌트\n\nmain의 닫는 중괄호 뒤에 twice를 정의하세요.",
+      "language": "java",
+      "entry_file": "Main.java",
+      "starter_code": "class Main {\n    public static void main(String[] args) {\n        // 이곳에 코드를 적으세요.\n    }\n}\n",
+      "solution": "class Main {\n    public static void main(String[] args) {\n        // 입력을 메서드에 전달해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int value = scanner.nextInt();\n        System.out.println(twice(value));\n    }\n    // 같은 계산을 여러 곳에서 사용할 수 있어요.\n    static int twice(int value) {\n        return value * 2;\n    }\n}\n",
+      "files": {},
+      "tests": [
+        {
+          "input": "4\n",
+          "expected": "8\n"
+        },
+        {
+          "input": "-3\n",
+          "expected": "-6\n"
+        },
+        {
+          "input": "0\n",
+          "expected": "0\n"
+        },
+        {
+          "input": "13\n",
+          "expected": "26\n"
+        },
+        {
+          "input": "-997\n",
+          "expected": "-1994\n"
+        }
+      ],
+      "web_checks": [],
+      "mutations": [],
+      "required": true,
+      "narration": [
+        {
+          "action": "say",
+          "target": "problem",
+          "text": "### 목표\n\n정수 하나를 입력받아 두 배를 출력하세요.\n입력 범위는 -1000부터 1000까지예요.\n계산은 static int twice(int value)에 적으세요.\nmain에서는 twice를 호출해 결과를 출력하세요.\n\n### 힌트\n\nmain의 닫는 중괄호 뒤에 twice를 정의하세요."
+        },
+        {
+          "action": "set_code",
+          "code": "class Main {\n    public static void main(String[] args) {\n\n    }\n    // 같은 계산을 여러 곳에서 사용할 수 있어요.\n    static int twice(int value) {\n        return value * 2;\n    }\n}\n",
+          "say": "바깥 구조와 메서드를 먼저 준비해요."
+        },
+        {
+          "action": "patch_code",
+          "before": "class Main {\n    public static void main(String[] args) {\n\n",
+          "after": "class Main {\n    public static void main(String[] args) {\n        // 입력을 메서드에 전달해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n",
+          "say": "class Main {"
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "아직 출력은 없어요. 값을 준비한 단계예요."
+        },
+        {
+          "action": "patch_code",
+          "before": "class Main {\n    public static void main(String[] args) {\n        // 입력을 메서드에 전달해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n    }\n",
+          "after": "class Main {\n    public static void main(String[] args) {\n        // 입력을 메서드에 전달해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int value = scanner.nextInt();\n    }\n",
+          "say": "class Main {"
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "아직 출력은 없어요. 값을 준비한 단계예요."
+        },
+        {
+          "action": "patch_code",
+          "before": "class Main {\n    public static void main(String[] args) {\n        // 입력을 메서드에 전달해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int value = scanner.nextInt();\n    }\n",
+          "after": "class Main {\n    public static void main(String[] args) {\n        // 입력을 메서드에 전달해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int value = scanner.nextInt();\n        System.out.println(twice(value));\n    }\n",
+          "say": "class Main {"
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "출력은 8예요."
+        },
+        {
+          "action": "say",
+          "target": "editor",
+          "text": "메서드를 main 안에 정의하면 컴파일 오류예요. Main 안의 다른 위치에 적으세요. 조심하세요."
+        },
+        {
+          "action": "submit",
+          "say": "다른 입력도 확인해요."
+        }
+      ],
+      "checker": "class QuestContract {\n    public static void main(String[] args) throws Exception {\n        \n        var m = Main.class.getDeclaredMethod(\"twice\", int.class);\n        require(java.lang.reflect.Modifier.isStatic(m.getModifiers()), \"twice에는 static을 붙이세요.\");\n        for (int v : new int[]{-997, -1, 0, 13, 1000})\n            require(Main.twice(v) == v * 2, \"twice는 전달한 값의 두 배를 반환해야 해요.\");\n        String source = java.nio.file.Files.readString(java.nio.file.Path.of(\"Main.java\"));\n        var compiler = javax.tools.ToolProvider.getSystemJavaCompiler();\n        try (var files = compiler.getStandardFileManager(null, null, java.nio.charset.StandardCharsets.UTF_8)) {\n            var task = (com.sun.source.util.JavacTask) compiler.getTask(null, files, null,\n                java.util.List.of(\"-proc:none\"), null, files.getJavaFileObjects(\"Main.java\"));\n            var tree = task.parse().iterator().next();\n            var positions = com.sun.source.util.Trees.instance(task).getSourcePositions();\n            long[] bounds = {-1, -1};\n            String[] change = {\"{ return value * 3; }\"};\n            new com.sun.source.util.TreeScanner<Void, String>() {\n                public Void visitClass(com.sun.source.tree.ClassTree node, String parent) {\n                    return super.visitClass(node, node.getSimpleName().toString());\n                }\n                public Void visitMethod(com.sun.source.tree.MethodTree node, String parent) {\n                    if (\"Main\".equals(parent) && \"twice\".contentEquals(node.getName()) && node.getBody() != null) {\n                        if (bounds[0] != -1) throw new AssertionError(\"검사할 메서드는 하나만 정의하세요.\");\n                        bounds[0] = positions.getStartPosition(tree, node.getBody());\n                        bounds[1] = positions.getEndPosition(tree, node.getBody());\n                    }\n                    return super.visitMethod(node, parent);\n                }\n                public Void visitVariable(com.sun.source.tree.VariableTree node, String parent) {\n                    if (\"Main\".equals(parent) && (\"var:\" + node.getName()).equals(\"twice\")) {\n                        if (node.getInitializer() != null) {\n                            bounds[0] = positions.getStartPosition(tree, node.getInitializer());\n                            bounds[1] = positions.getEndPosition(tree, node.getInitializer());\n                        } else {\n                            // Java fields without an initializer have a defined default.\n                            bounds[0] = positions.getEndPosition(tree, node) - 1;\n                            bounds[1] = bounds[0];\n                            change[0] = \" = \" + change[0];\n                        }\n                    }\n                    return super.visitVariable(node, parent);\n                }\n            }.scan(tree, \"\");\n            if (bounds[0] < 0) throw new AssertionError(\"필요한 메서드를 정의하세요.\");\n            System.out.print(source.substring(0, (int) bounds[0]) + change[0] + source.substring((int) bounds[1]));\n        }\n    }\n    static void require(boolean ok, String message) {\n        if (!ok) throw new AssertionError(message);\n    }\n}\n",
+      "source_hash": "bb5b0a2ff6d157f18fbf2503f36128862d02dcc8949b209b9ba941d64c1200d5"
+    },
+    {
+      "id": "java25-10-code",
+      "title": "직접 풀기 · 문자열과 값 비교",
+      "goal": "### 목표\n\n공백 없는 단어 하나를 입력받아요.\n정확히 `java`면 `환영해요`를 출력하세요.\n다른 단어는 `다시 입력해요`를 출력하세요.\n영문 대문자와 소문자는 구분해요.\n\n### 힌트\n\nword.equals(\"java\")를 조건에 사용하세요.",
+      "language": "java",
+      "entry_file": "Main.java",
+      "starter_code": "class Main {\n    public static void main(String[] args) {\n        // 이곳에 코드를 적으세요.\n    }\n}\n",
+      "solution": "class Main {\n    public static void main(String[] args) {\n        // 공백 없는 문자열 하나를 읽어요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        String word = scanner.next();\n        // 문자열 내용은 equals로 비교해요.\n        if (word.equals(\"java\")) {\n            System.out.println(\"환영해요\");\n        } else {\n            System.out.println(\"다시 입력해요\");\n        }\n    }\n}\n",
+      "files": {},
+      "tests": [
+        {
+          "input": "java\n",
+          "expected": "환영해요\n"
+        },
+        {
+          "input": "Java\n",
+          "expected": "다시 입력해요\n"
+        },
+        {
+          "input": "python\n",
+          "expected": "다시 입력해요\n"
+        },
+        {
+          "input": "자바\n",
+          "expected": "다시 입력해요\n"
+        }
+      ],
+      "web_checks": [],
+      "mutations": [],
+      "required": true,
+      "narration": [
+        {
+          "action": "say",
+          "target": "problem",
+          "text": "공백 없는 단어 하나를 입력받아요.\n정확히 `java`면 `환영해요`를 출력하세요.\n다른 단어는 `다시 입력해요`를 출력하세요.\n영문 대문자와 소문자는 구분해요."
+        },
+        {
+          "action": "set_code",
+          "code": "class Main {\n    public static void main(String[] args) {\n        // equals는 글자 내용이 같은지 비교해요.\n        String word = \"java\";\n        System.out.println(word.equals(\"java\"));\n    }\n}\n",
+          "say": "먼저 작은 예제를 실행해 볼게요."
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "예제 출력은 true예요."
+        },
+        {
+          "action": "say",
+          "target": "editor",
+          "text": "==로 문자열 내용을 비교하지 마세요. 우연히 맞아 보여도 입력에서는 달라질 수 있어요."
+        },
+        {
+          "action": "set_code",
+          "code": "class Main {\n    public static void main(String[] args) {\n        // 공백 없는 문자열 하나를 읽어요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        String word = scanner.next();\n        // 문자열 내용은 equals로 비교해요.\n        if (word.equals(\"java\")) {\n            System.out.println(\"환영해요\");\n        } else {\n            System.out.println(\"다시 입력해요\");\n        }\n    }\n}\n",
+          "say": "이제 문제의 입력과 출력에 맞춰 확장해요."
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "첫 예제의 결과는 환영해요예요."
+        },
+        {
+          "action": "submit",
+          "say": "다른 입력도 통과하는지 제출해요."
+        }
+      ],
+      "source_hash": "ea6982f21a05524b6381f720637ee66101df7d3fdd181e1e236e275f3c1bda95"
+    },
+    {
+      "id": "java25-12-code",
+      "title": "직접 풀기 · 도전: 점수 요약하기",
+      "goal": "### 목표\n\n첫 입력 n은 학생 수예요. 1부터 10이에요.\n이어서 0부터 100까지의 점수 n개가 와요.\n첫 줄은 점수 합, 둘째 줄은 60점 이상 인원이에요.\n셋째 줄은 정수 평균이에요. 소수 부분은 버려요.\n배열에 점수를 저장한 뒤 요약하세요.\nScoreBook(int count)로 인원을 저장하세요.\nint sum, passed는 인스턴스 필드예요.\nvoid add(int score)는 합과 합격 수를 늘려요.\nstatic boolean isPassed(int score)는 60 이상을 판단해요.\nint average()는 정수 평균을 반환해요.\nmain은 객체에 점수를 전달하고 결과를 읽어요.\n\n### 힌트\n\nScoreBook의 add에서 isPassed를 호출하세요.\nmain의 반복문에서는 book.add(score)를 호출해요.",
+      "language": "java",
+      "entry_file": "Main.java",
+      "starter_code": "class Main {\n    public static void main(String[] args) {\n        // 이곳에 코드를 적으세요.\n    }\n}\n",
+      "solution": "class Main {\n    public static void main(String[] args) {\n        // 배열에 학생들의 점수를 보관해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int n = scanner.nextInt();\n        int[] scores = new int[n];\n        for (int i = 0; i < n; i++) {\n            scores[i] = scanner.nextInt();\n        }\n        // 생성자에 인원을 전달하고 객체에 점수를 모아요.\n        ScoreBook book = new ScoreBook(n);\n        for (int score : scores) { book.add(score); }\n        // 객체가 보관한 결과와 메서드의 결과를 읽어요.\n        System.out.println(book.sum);\n        System.out.println(book.passed);\n        System.out.println(book.average());\n    }\n    // 점수 기록 객체가 합과 합격 인원을 보관해요.\n    static class ScoreBook {\n        int sum;\n        int passed;\n        // 배열의 길이를 생성자로 전달해요.\n        final int count;\n        ScoreBook(int count) { this.count = count; }\n        // 공통 판단은 static 메서드로 나눠요.\n        static boolean isPassed(int score) { return score >= 60; }\n        // 점수마다 객체의 상태를 갱신해요.\n        void add(int score) {\n            sum += score;\n            if (isPassed(score)) { passed++; }\n        }\n        // 객체에 보관한 값으로 정수 평균을 구해요.\n        int average() { return sum / count; }\n    }\n}\n",
+      "files": {},
+      "tests": [
+        {
+          "input": "3 50 60 100\n",
+          "expected": "210\n2\n70\n"
+        },
+        {
+          "input": "1 0\n",
+          "expected": "0\n0\n0\n"
+        },
+        {
+          "input": "2 60 61\n",
+          "expected": "121\n2\n60\n"
+        },
+        {
+          "input": "4 0 59 60 100\n",
+          "expected": "219\n2\n54\n"
+        }
+      ],
+      "web_checks": [],
+      "mutations": [],
+      "required": true,
+      "narration": [
+        {
+          "action": "say",
+          "target": "problem",
+          "text": "### 목표\n\n첫 입력 n은 학생 수예요. 1부터 10이에요.\n이어서 0부터 100까지의 점수 n개가 와요.\n첫 줄은 점수 합, 둘째 줄은 60점 이상 인원이에요.\n셋째 줄은 정수 평균이에요. 소수 부분은 버려요.\n배열에 점수를 저장한 뒤 요약하세요.\nScoreBook(int count)로 인원을 저장하세요.\nint sum, passed는 인스턴스 필드예요.\nvoid add(int score)는 합과 합격 수를 늘려요.\nstatic boolean isPassed(int score)는 60 이상을 판단해요.\nint average()는 정수 평균을 반환해요.\nmain은 객체에 점수를 전달하고 결과를 읽어요.\n\n### 힌트\n\nScoreBook의 add에서 isPassed를 호출하세요.\nmain의 반복문에서는 book.add(score)를 호출해요."
+        },
+        {
+          "action": "set_code",
+          "code": "class Main {\n    public static void main(String[] args) {\n\n    }\n    // 점수 기록 객체가 합과 합격 인원을 보관해요.\n    static class ScoreBook {\n        int sum;\n        int passed;\n        // 배열의 길이를 생성자로 전달해요.\n        final int count;\n        ScoreBook(int count) { this.count = count; }\n        // 공통 판단은 static 메서드로 나눠요.\n        static boolean isPassed(int score) { return score >= 60; }\n        // 점수마다 객체의 상태를 갱신해요.\n        void add(int score) {\n            sum += score;\n            if (isPassed(score)) { passed++; }\n        }\n        // 객체에 보관한 값으로 정수 평균을 구해요.\n        int average() { return sum / count; }\n    }\n}\n",
+          "say": "바깥 구조와 메서드를 먼저 준비해요."
+        },
+        {
+          "action": "patch_code",
+          "before": "class Main {\n    public static void main(String[] args) {\n\n",
+          "after": "class Main {\n    public static void main(String[] args) {\n        // 배열에 학생들의 점수를 보관해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n",
+          "say": "class Main {"
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "아직 출력은 없어요. 값을 준비한 단계예요."
+        },
+        {
+          "action": "patch_code",
+          "before": "class Main {\n    public static void main(String[] args) {\n        // 배열에 학생들의 점수를 보관해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n    }\n",
+          "after": "class Main {\n    public static void main(String[] args) {\n        // 배열에 학생들의 점수를 보관해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int n = scanner.nextInt();\n    }\n",
+          "say": "class Main {"
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "아직 출력은 없어요. 값을 준비한 단계예요."
+        },
+        {
+          "action": "patch_code",
+          "before": "class Main {\n    public static void main(String[] args) {\n        // 배열에 학생들의 점수를 보관해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int n = scanner.nextInt();\n    }\n",
+          "after": "class Main {\n    public static void main(String[] args) {\n        // 배열에 학생들의 점수를 보관해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int n = scanner.nextInt();\n        int[] scores = new int[n];\n    }\n",
+          "say": "class Main {"
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "아직 출력은 없어요. 값을 준비한 단계예요."
+        },
+        {
+          "action": "patch_code",
+          "before": "class Main {\n    public static void main(String[] args) {\n        // 배열에 학생들의 점수를 보관해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int n = scanner.nextInt();\n        int[] scores = new int[n];\n    }\n",
+          "after": "class Main {\n    public static void main(String[] args) {\n        // 배열에 학생들의 점수를 보관해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int n = scanner.nextInt();\n        int[] scores = new int[n];\n        for (int i = 0; i < n; i++) {\n            scores[i] = scanner.nextInt();\n        }\n    }\n",
+          "say": "class Main {"
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "아직 출력은 없어요. 값을 준비한 단계예요."
+        },
+        {
+          "action": "patch_code",
+          "before": "class Main {\n    public static void main(String[] args) {\n        // 배열에 학생들의 점수를 보관해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int n = scanner.nextInt();\n        int[] scores = new int[n];\n        for (int i = 0; i < n; i++) {\n            scores[i] = scanner.nextInt();\n        }\n    }\n",
+          "after": "class Main {\n    public static void main(String[] args) {\n        // 배열에 학생들의 점수를 보관해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int n = scanner.nextInt();\n        int[] scores = new int[n];\n        for (int i = 0; i < n; i++) {\n            scores[i] = scanner.nextInt();\n        }\n        // 생성자에 인원을 전달하고 객체에 점수를 모아요.\n        ScoreBook book = new ScoreBook(n);\n    }\n",
+          "say": "class Main {"
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "아직 출력은 없어요. 값을 준비한 단계예요."
+        },
+        {
+          "action": "patch_code",
+          "before": "class Main {\n    public static void main(String[] args) {\n        // 배열에 학생들의 점수를 보관해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int n = scanner.nextInt();\n        int[] scores = new int[n];\n        for (int i = 0; i < n; i++) {\n            scores[i] = scanner.nextInt();\n        }\n        // 생성자에 인원을 전달하고 객체에 점수를 모아요.\n        ScoreBook book = new ScoreBook(n);\n    }\n",
+          "after": "class Main {\n    public static void main(String[] args) {\n        // 배열에 학생들의 점수를 보관해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int n = scanner.nextInt();\n        int[] scores = new int[n];\n        for (int i = 0; i < n; i++) {\n            scores[i] = scanner.nextInt();\n        }\n        // 생성자에 인원을 전달하고 객체에 점수를 모아요.\n        ScoreBook book = new ScoreBook(n);\n        for (int score : scores) { book.add(score); }\n    }\n",
+          "say": "class Main {"
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "아직 출력은 없어요. 값을 준비한 단계예요."
+        },
+        {
+          "action": "patch_code",
+          "before": "class Main {\n    public static void main(String[] args) {\n        // 배열에 학생들의 점수를 보관해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int n = scanner.nextInt();\n        int[] scores = new int[n];\n        for (int i = 0; i < n; i++) {\n            scores[i] = scanner.nextInt();\n        }\n        // 생성자에 인원을 전달하고 객체에 점수를 모아요.\n        ScoreBook book = new ScoreBook(n);\n        for (int score : scores) { book.add(score); }\n    }\n",
+          "after": "class Main {\n    public static void main(String[] args) {\n        // 배열에 학생들의 점수를 보관해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int n = scanner.nextInt();\n        int[] scores = new int[n];\n        for (int i = 0; i < n; i++) {\n            scores[i] = scanner.nextInt();\n        }\n        // 생성자에 인원을 전달하고 객체에 점수를 모아요.\n        ScoreBook book = new ScoreBook(n);\n        for (int score : scores) { book.add(score); }\n        // 객체가 보관한 결과와 메서드의 결과를 읽어요.\n        System.out.println(book.sum);\n    }\n",
+          "say": "class Main {"
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "출력은 210예요."
+        },
+        {
+          "action": "patch_code",
+          "before": "class Main {\n    public static void main(String[] args) {\n        // 배열에 학생들의 점수를 보관해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int n = scanner.nextInt();\n        int[] scores = new int[n];\n        for (int i = 0; i < n; i++) {\n            scores[i] = scanner.nextInt();\n        }\n        // 생성자에 인원을 전달하고 객체에 점수를 모아요.\n        ScoreBook book = new ScoreBook(n);\n        for (int score : scores) { book.add(score); }\n        // 객체가 보관한 결과와 메서드의 결과를 읽어요.\n        System.out.println(book.sum);\n    }\n",
+          "after": "class Main {\n    public static void main(String[] args) {\n        // 배열에 학생들의 점수를 보관해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int n = scanner.nextInt();\n        int[] scores = new int[n];\n        for (int i = 0; i < n; i++) {\n            scores[i] = scanner.nextInt();\n        }\n        // 생성자에 인원을 전달하고 객체에 점수를 모아요.\n        ScoreBook book = new ScoreBook(n);\n        for (int score : scores) { book.add(score); }\n        // 객체가 보관한 결과와 메서드의 결과를 읽어요.\n        System.out.println(book.sum);\n        System.out.println(book.passed);\n    }\n",
+          "say": "class Main {"
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "출력은 210, 2예요."
+        },
+        {
+          "action": "patch_code",
+          "before": "class Main {\n    public static void main(String[] args) {\n        // 배열에 학생들의 점수를 보관해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int n = scanner.nextInt();\n        int[] scores = new int[n];\n        for (int i = 0; i < n; i++) {\n            scores[i] = scanner.nextInt();\n        }\n        // 생성자에 인원을 전달하고 객체에 점수를 모아요.\n        ScoreBook book = new ScoreBook(n);\n        for (int score : scores) { book.add(score); }\n        // 객체가 보관한 결과와 메서드의 결과를 읽어요.\n        System.out.println(book.sum);\n        System.out.println(book.passed);\n    }\n",
+          "after": "class Main {\n    public static void main(String[] args) {\n        // 배열에 학생들의 점수를 보관해요.\n        var scanner = new java.util.Scanner(System.in, \"UTF-8\");\n        int n = scanner.nextInt();\n        int[] scores = new int[n];\n        for (int i = 0; i < n; i++) {\n            scores[i] = scanner.nextInt();\n        }\n        // 생성자에 인원을 전달하고 객체에 점수를 모아요.\n        ScoreBook book = new ScoreBook(n);\n        for (int score : scores) { book.add(score); }\n        // 객체가 보관한 결과와 메서드의 결과를 읽어요.\n        System.out.println(book.sum);\n        System.out.println(book.passed);\n        System.out.println(book.average());\n    }\n",
+          "say": "class Main {"
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "출력은 210, 2, 70예요."
+        },
+        {
+          "action": "say",
+          "target": "editor",
+          "text": "평균만 실수로 출력하면 이 문제의 조건과 달라져요. 정수 평균을 출력하세요. 조심하세요."
+        },
+        {
+          "action": "submit",
+          "say": "다른 입력도 확인해요."
+        }
+      ],
+      "checker": "[\"class QuestContract {\\n    public static void main(String[] args) throws Exception {\\n        \\n        require(java.lang.reflect.Modifier.isStatic(Main.ScoreBook.class.getDeclaredMethod(\\\"isPassed\\\", int.class).getModifiers()), \\\"isPassed\\ub294 static \\uba54\\uc11c\\ub4dc\\uc608\\uc694.\\\");\\n        for (int s : new int[]{0, 59, 60, 61, 100}) require(Main.ScoreBook.isPassed(s) == (s >= 60), \\\"\\ud569\\uaca9 \\uacbd\\uacc4\\uac12\\uc744 \\ud655\\uc778\\ud558\\uc138\\uc694.\\\");\\n        var a = new Main.ScoreBook(3); var b = new Main.ScoreBook(1);\\n        a.add(59); a.add(60); a.add(100); b.add(0);\\n        require(a.sum == 219 && a.passed == 2 && a.average() == 73 && b.sum == 0 && b.average() == 0, \\\"\\uac1d\\uccb4\\ubcc4 \\ud569\\uacfc \\ud3c9\\uade0\\uc744 \\ud655\\uc778\\ud558\\uc138\\uc694.\\\");\\n        String source = java.nio.file.Files.readString(java.nio.file.Path.of(\\\"Main.java\\\"));\\n        var compiler = javax.tools.ToolProvider.getSystemJavaCompiler();\\n        try (var files = compiler.getStandardFileManager(null, null, java.nio.charset.StandardCharsets.UTF_8)) {\\n            var task = (com.sun.source.util.JavacTask) compiler.getTask(null, files, null,\\n                java.util.List.of(\\\"-proc:none\\\"), null, files.getJavaFileObjects(\\\"Main.java\\\"));\\n            var tree = task.parse().iterator().next();\\n            var positions = com.sun.source.util.Trees.instance(task).getSourcePositions();\\n            long[] bounds = {-1, -1};\\n            String[] change = {\\\"{ sum += score + 1; if (isPassed(score)) passed++; }\\\"};\\n            new com.sun.source.util.TreeScanner<Void, String>() {\\n                public Void visitClass(com.sun.source.tree.ClassTree node, String parent) {\\n                    return super.visitClass(node, node.getSimpleName().toString());\\n                }\\n                public Void visitMethod(com.sun.source.tree.MethodTree node, String parent) {\\n                    if (\\\"ScoreBook\\\".equals(parent) && \\\"add\\\".contentEquals(node.getName()) && node.getBody() != null) {\\n                        if (bounds[0] != -1) throw new AssertionError(\\\"\\uac80\\uc0ac\\ud560 \\uba54\\uc11c\\ub4dc\\ub294 \\ud558\\ub098\\ub9cc \\uc815\\uc758\\ud558\\uc138\\uc694.\\\");\\n                        bounds[0] = positions.getStartPosition(tree, node.getBody());\\n                        bounds[1] = positions.getEndPosition(tree, node.getBody());\\n                    }\\n                    return super.visitMethod(node, parent);\\n                }\\n                public Void visitVariable(com.sun.source.tree.VariableTree node, String parent) {\\n                    if (\\\"ScoreBook\\\".equals(parent) && (\\\"var:\\\" + node.getName()).equals(\\\"add\\\")) {\\n                        if (node.getInitializer() != null) {\\n                            bounds[0] = positions.getStartPosition(tree, node.getInitializer());\\n                            bounds[1] = positions.getEndPosition(tree, node.getInitializer());\\n                        } else {\\n                            // Java fields without an initializer have a defined default.\\n                            bounds[0] = positions.getEndPosition(tree, node) - 1;\\n                            bounds[1] = bounds[0];\\n                            change[0] = \\\" = \\\" + change[0];\\n                        }\\n                    }\\n                    return super.visitVariable(node, parent);\\n                }\\n            }.scan(tree, \\\"\\\");\\n            if (bounds[0] < 0) throw new AssertionError(\\\"\\ud544\\uc694\\ud55c \\uba54\\uc11c\\ub4dc\\ub97c \\uc815\\uc758\\ud558\\uc138\\uc694.\\\");\\n            System.out.print(source.substring(0, (int) bounds[0]) + change[0] + source.substring((int) bounds[1]));\\n        }\\n    }\\n    static void require(boolean ok, String message) {\\n        if (!ok) throw new AssertionError(message);\\n    }\\n}\\n\", \"class QuestContract {\\n    public static void main(String[] args) throws Exception {\\n        \\n        String source = java.nio.file.Files.readString(java.nio.file.Path.of(\\\"Main.java\\\"));\\n        var compiler = javax.tools.ToolProvider.getSystemJavaCompiler();\\n        try (var files = compiler.getStandardFileManager(null, null, java.nio.charset.StandardCharsets.UTF_8)) {\\n            var task = (com.sun.source.util.JavacTask) compiler.getTask(null, files, null,\\n                java.util.List.of(\\\"-proc:none\\\"), null, files.getJavaFileObjects(\\\"Main.java\\\"));\\n            var tree = task.parse().iterator().next();\\n            var positions = com.sun.source.util.Trees.instance(task).getSourcePositions();\\n            long[] bounds = {-1, -1};\\n            String[] change = {\\\"{ return false; }\\\"};\\n            new com.sun.source.util.TreeScanner<Void, String>() {\\n                public Void visitClass(com.sun.source.tree.ClassTree node, String parent) {\\n                    return super.visitClass(node, node.getSimpleName().toString());\\n                }\\n                public Void visitMethod(com.sun.source.tree.MethodTree node, String parent) {\\n                    if (\\\"ScoreBook\\\".equals(parent) && \\\"isPassed\\\".contentEquals(node.getName()) && node.getBody() != null) {\\n                        if (bounds[0] != -1) throw new AssertionError(\\\"\\uac80\\uc0ac\\ud560 \\uba54\\uc11c\\ub4dc\\ub294 \\ud558\\ub098\\ub9cc \\uc815\\uc758\\ud558\\uc138\\uc694.\\\");\\n                        bounds[0] = positions.getStartPosition(tree, node.getBody());\\n                        bounds[1] = positions.getEndPosition(tree, node.getBody());\\n                    }\\n                    return super.visitMethod(node, parent);\\n                }\\n                public Void visitVariable(com.sun.source.tree.VariableTree node, String parent) {\\n                    if (\\\"ScoreBook\\\".equals(parent) && (\\\"var:\\\" + node.getName()).equals(\\\"isPassed\\\")) {\\n                        if (node.getInitializer() != null) {\\n                            bounds[0] = positions.getStartPosition(tree, node.getInitializer());\\n                            bounds[1] = positions.getEndPosition(tree, node.getInitializer());\\n                        } else {\\n                            // Java fields without an initializer have a defined default.\\n                            bounds[0] = positions.getEndPosition(tree, node) - 1;\\n                            bounds[1] = bounds[0];\\n                            change[0] = \\\" = \\\" + change[0];\\n                        }\\n                    }\\n                    return super.visitVariable(node, parent);\\n                }\\n            }.scan(tree, \\\"\\\");\\n            if (bounds[0] < 0) throw new AssertionError(\\\"\\ud544\\uc694\\ud55c \\uba54\\uc11c\\ub4dc\\ub97c \\uc815\\uc758\\ud558\\uc138\\uc694.\\\");\\n            System.out.print(source.substring(0, (int) bounds[0]) + change[0] + source.substring((int) bounds[1]));\\n        }\\n    }\\n    static void require(boolean ok, String message) {\\n        if (!ok) throw new AssertionError(message);\\n    }\\n}\\n\", \"class QuestContract {\\n    public static void main(String[] args) throws Exception {\\n        \\n        String source = java.nio.file.Files.readString(java.nio.file.Path.of(\\\"Main.java\\\"));\\n        var compiler = javax.tools.ToolProvider.getSystemJavaCompiler();\\n        try (var files = compiler.getStandardFileManager(null, null, java.nio.charset.StandardCharsets.UTF_8)) {\\n            var task = (com.sun.source.util.JavacTask) compiler.getTask(null, files, null,\\n                java.util.List.of(\\\"-proc:none\\\"), null, files.getJavaFileObjects(\\\"Main.java\\\"));\\n            var tree = task.parse().iterator().next();\\n            var positions = com.sun.source.util.Trees.instance(task).getSourcePositions();\\n            long[] bounds = {-1, -1};\\n            String[] change = {\\\"{ return -123; }\\\"};\\n            new com.sun.source.util.TreeScanner<Void, String>() {\\n                public Void visitClass(com.sun.source.tree.ClassTree node, String parent) {\\n                    return super.visitClass(node, node.getSimpleName().toString());\\n                }\\n                public Void visitMethod(com.sun.source.tree.MethodTree node, String parent) {\\n                    if (\\\"ScoreBook\\\".equals(parent) && \\\"average\\\".contentEquals(node.getName()) && node.getBody() != null) {\\n                        if (bounds[0] != -1) throw new AssertionError(\\\"\\uac80\\uc0ac\\ud560 \\uba54\\uc11c\\ub4dc\\ub294 \\ud558\\ub098\\ub9cc \\uc815\\uc758\\ud558\\uc138\\uc694.\\\");\\n                        bounds[0] = positions.getStartPosition(tree, node.getBody());\\n                        bounds[1] = positions.getEndPosition(tree, node.getBody());\\n                    }\\n                    return super.visitMethod(node, parent);\\n                }\\n                public Void visitVariable(com.sun.source.tree.VariableTree node, String parent) {\\n                    if (\\\"ScoreBook\\\".equals(parent) && (\\\"var:\\\" + node.getName()).equals(\\\"average\\\")) {\\n                        if (node.getInitializer() != null) {\\n                            bounds[0] = positions.getStartPosition(tree, node.getInitializer());\\n                            bounds[1] = positions.getEndPosition(tree, node.getInitializer());\\n                        } else {\\n                            // Java fields without an initializer have a defined default.\\n                            bounds[0] = positions.getEndPosition(tree, node) - 1;\\n                            bounds[1] = bounds[0];\\n                            change[0] = \\\" = \\\" + change[0];\\n                        }\\n                    }\\n                    return super.visitVariable(node, parent);\\n                }\\n            }.scan(tree, \\\"\\\");\\n            if (bounds[0] < 0) throw new AssertionError(\\\"\\ud544\\uc694\\ud55c \\uba54\\uc11c\\ub4dc\\ub97c \\uc815\\uc758\\ud558\\uc138\\uc694.\\\");\\n            System.out.print(source.substring(0, (int) bounds[0]) + change[0] + source.substring((int) bounds[1]));\\n        }\\n    }\\n    static void require(boolean ok, String message) {\\n        if (!ok) throw new AssertionError(message);\\n    }\\n}\\n\"]",
+      "source_hash": "d4e5fc22eab5d8e9ada7baddb722bb0c07e1b731231d82c63da5eb47ed4209f1"
+    }
+  ]
+}
